@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Context } from "./context/Context";
+import PropTypes from "prop-types";
 
 function Image(props) {
   const [hovered, setHovered] = useState(false);
@@ -44,5 +45,14 @@ function Image(props) {
     </div>
   );
 }
+
+Image.propTypes = {
+  className: PropTypes.string,
+  img: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    isFavorite: PropTypes.bool,
+  }),
+};
 
 export default Image;
