@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { Context } from "./context/Context";
 import PropTypes from "prop-types";
+import useHover from "../hooks/useHover";
 
 function CartItem(props) {
-  const [hovered, setHovered] = useState(false);
+  const [hovered, domRef] = useHover();
   const { removeImageFromCart } = useContext(Context);
 
   return (
@@ -11,8 +12,7 @@ function CartItem(props) {
       <i
         className={`ri-delete-bin-${hovered ? `fill` : `line`}`}
         onClick={() => removeImageFromCart(props.data.id)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
+        ref={domRef}
       ></i>
       <img src={props.data.url} alt="Cart Img" width="130px" />
       <p>$5.99</p>
